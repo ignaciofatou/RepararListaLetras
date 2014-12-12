@@ -1,9 +1,12 @@
-package r.pkg3.pkg03.repararlistaletras;
+package repararlistaletras;
 
-public class ConErrores extends javax.swing.JFrame {
+public class SinErrores extends javax.swing.JFrame {
 
-    public ConErrores() {
+    public SinErrores() {
         initComponents();
+        
+        //Centramos la ventana
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -61,32 +64,42 @@ public class ConErrores extends javax.swing.JFrame {
 
     private void botónAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botónAceptarActionPerformed
     {//GEN-HEADEREND:event_botónAceptarActionPerformed
-        int selec = listaCantidad.getSelectedIndex();
-        int maxLetras;
-        char letraActual;
+        //Inicializamos el TextArea
+        areaMensajes.setText("");
+        
+        //Obtenemos el Indice de la Cantidad Seleccionada
+        int  selec = listaCantidad.getSelectedIndex();
+        int  maxLetras;
+        char letraActual = 'A';
+
         switch(selec) {
             case 0:
                 maxLetras = 5;
+                break;
             case 1:
                 maxLetras = 15;
+                break;
             case 2:
                 maxLetras = 26;
+                break;
+            default:
+                areaMensajes.setText("ERROR - OPCION NO CONTEMPLADA");
+                return;
         }
-        letraActual = 'A';
-        for(int i=maxLetras; i>0; i++);
+        for (int i=0; i < maxLetras; i++)
         {
+            if (letraActual != 'A' && letraActual != 'E' && letraActual != 'I' &&
+                letraActual != 'O' && letraActual != 'U')
+               areaMensajes.append("" + letraActual + "\n");
+
             letraActual++;
-            if(letraActual!='A' || letraActual!='E' || letraActual!='I' ||
-                    letraActual!='O' || letraActual!='U')
-               areaMensajes.append(""+letraActual);
-            areaMensajes.append("\n");
         }
     }//GEN-LAST:event_botónAceptarActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConErrores().setVisible(true);
+                new SinErrores().setVisible(true);
             }
         });
     }
